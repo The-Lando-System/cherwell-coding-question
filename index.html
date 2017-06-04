@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cherwell Coding Question</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>    
+  
+    <!-- Triangle Layout -->
+    <script src="triangle-layout.js"></script>
+
+    <!-- Controller for index.html -->
+    <script src="controller.js"></script>
+
+  </head>
+  <body style="margin:20px">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3" style="text-align: center">Cherwell Coding Question</h1>
+            <p class="lead" style="text-align: center">Solved and Coded by Matt Voget</p>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+
+            <style scoped>
+                .card               { margin-top : 20px; }
+                #row-col-input      { margin-top : 20px; margin-bottom: 20px; max-width:200px; }
+                .coord-label        { float : left; margin : 10px; }
+                .coord-input        { max-width : 70px; }
+                button              { cursor : pointer; }
+                img                 { margin : auto; }
+                #row-col-calc-btn   { margin-top : 20px; }
+                #test-result        { margin-top : 30px; padding: 20px; border: solid 1px #eff0f1}
+            </style>
+
+            <!-- Questions -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-block">
+                        <p class="card-text">The task, calculate the triangle coordinates for an image with right triangles such that for a given row (A-F) and column (1-12) you can produce the layout below:</p>
+                    </div>
+                    <img class="card-img-bottom" width="500" src="img1.png" alt="Image 1">
+                </div>
+                <div class="card">
+                    <div class="card-block">
+                        <p class="card-text">Each non-hypotenuse side of the triangle is as follows:</p>
+                    </div>
+                    <img class="card-img-bottom" width="500" src="img2.png" alt="Image 2">
+                </div>
+                <div class="card">
+                    <div class="card-block">
+                        <p class="card-text">Lastly, given the vertex coordinates, calculate the row and column for the triangle:</p>
+                    </div>
+                    <img class="card-img-bottom" width="500" src="img3.png" alt="Image 3">
+                </div>
+            </div>
+
+            <!-- Answers -->
+            <div class="col-md-6">
+                <div class="row" >
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Enter Triangle Row and Column</h4>
+                                <input id="row-col-input" class="form-control" type="text" placeholder="e.g. F5 or B10">
+                                <button id="coord-calc-btn" class="btn btn-primary">Calculate</button>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Coordinates:</h4>
+                                <p id="coord-result" class="card-text">...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Enter Coordinates</h4>
+                                <div class="coord-label">
+                                    <strong>V1: </strong>
+                                </div>
+                                <div style="float:left">
+                                    <input id="v1-input" class="form-control coord-input" type="text" placeholder="X,Y">
+                                </div>
+                                <div class="coord-label">
+                                    <strong>V2: </strong>
+                                </div>
+                                <div style="float:left">
+                                    <input id="v2-input" class="form-control coord-input" type="text" placeholder="X,Y">
+                                </div>
+                                <div class="coord-label">
+                                    <strong>V3: </strong>
+                                </div>
+                                <div style="float:left">
+                                    <input id="v3-input" class="form-control coord-input" type="text" placeholder="X,Y">
+                                </div>
+                                <div style="clear:both">
+                                    <button id="row-col-calc-btn" class="btn btn-primary">Calculate</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Triangle Row and Column:</h4>
+                                <p id="row-col-result" class="card-text">...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title">Test All Rows and Columns</h4>
+                                <button id="test-btn" class="btn btn-primary">Go</button>
+                                <pre id="test-result" class="card-text">...</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
